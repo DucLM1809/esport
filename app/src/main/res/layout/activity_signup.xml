@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Sign In"
+            android:text="Sign Up"
             android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -103,7 +103,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -113,53 +113,19 @@
             app:layout_constraintStart_toStartOf="@+id/passwordField"
             app:layout_constraintTop_toBottomOf="@+id/passwordField">
 
-            <ImageView
-                android:src="@drawable/facebook"
-                android:background="@drawable/facebookbutton"
-                android:id="@+id/button"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="1"
-                android:padding="10dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CONFIRM PASSWORD"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:background="@drawable/edittextrounded"
                 />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:src="@drawable/google"
-                android:background="@drawable/googlebutton"
-                android:id="@+id/button2"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="2"
-                android:padding="10dp"
-                />
-
-            <ImageView
-                android:src="@drawable/apple"
-                android:background="@drawable/applebutton"
-                android:id="@+id/button3"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="3"
-                android:padding="10dp"
-                />
-
-            <ImageView
-                android:src="@drawable/xbox"
-                android:background="@drawable/xboxbutton"
-                android:id="@+id/button4"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:text="4"
-                android:padding="10dp"
-                />
-        </LinearLayout>
         <ImageView
             android:padding="20dp"
             android:src="@drawable/arrow_forward"
@@ -185,16 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DON'T HAVE ACCOUNT?"
-                android:layout_marginEnd="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CREATE ONE"
+                android:text="ALREADY HAVE AN ACCOUNT?"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 />
