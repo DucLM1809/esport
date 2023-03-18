@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/admin_product_image"
+        android:layout_width="172dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/admin_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        android:text="The Mageseeker: A League of Legends Story Collector's Edition"
+        app:layout_constraintEnd_toEndOf="@+id/admin_product_image"
+        app:layout_constraintStart_toStartOf="@+id/admin_product_image"
+        app:layout_constraintTop_toBottomOf="@+id/admin_product_image" />
+
+    <TextView
+        android:id="@+id/admin_product_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:letterSpacing="0.05"
+        android:text="From Digital Sun, creators of Moonlighter, The Mageseeker is an action RPG in the League of Legends universe. Play as Sylas, a mage now freed from years in capacity. Wield the chains that once bound you ad liberate Demacia from the Mageseekers"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/admin_product_name"
+        app:layout_constraintStart_toStartOf="@+id/admin_product_name"
+        app:layout_constraintTop_toBottomOf="@+id/admin_product_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_product_description">
+
+        <TextView
+            android:id="@+id/admin_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="$10 -"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"/>
+
+        <TextView
+            android:id="@+id/admin_product_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:letterSpacing="0.05"
+            android:text="Limited Edition" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
