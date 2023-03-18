@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.esport.R;
 import com.example.esport.model.Product;
 
@@ -68,9 +69,10 @@ public class AdminProductAdapter extends BaseAdapter {
         Product product = productList.get(position);
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
-        holder.productPrice.setText(product.getPrice() + " -");
+        holder.productPrice.setText("$" + product.getPrice() + " -");
         holder.productTag.setText(product.getTag());
-        holder.productImg.setImageBitmap(LoadImageFromWebOperations(product.getImage()));
+        Glide.with(context).load(product.getImage()).into(holder.productImg);
+        // holder.productImg.setImageBitmap(LoadImageFromWebOperations(product.getImage()));
 
         return view;
     }
