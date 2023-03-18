@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SigninActivity"
+    tools:context=".view.SigninActivity"
     android:background="@drawable/background"
     >
 
@@ -192,6 +192,7 @@
                 />
 
             <TextView
+                android:id="@+id/create_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CREATE ONE"

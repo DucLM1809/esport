@@ -1,14 +1,16 @@
-package com.example.esport;
+package com.example.esport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SigninActivity extends AppCompatActivity {
+import com.example.esport.R;
+
+public class AdminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_admin);
     }
 }

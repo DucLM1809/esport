@@ -1,8 +1,10 @@
-package com.example.esport;
+package com.example.esport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.esport.R;
 
 public class MainActivity extends AppCompatActivity {
 
