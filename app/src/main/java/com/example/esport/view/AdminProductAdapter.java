@@ -1,6 +1,7 @@
 package com.example.esport.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.example.esport.R;
 import com.example.esport.model.Product;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class AdminProductAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        ImageView productImg, btnDelete;
-        TextView productName, productDescription, productPrice, productTag;
+        ImageView productImg, btnDelete, btnEdit;
+        TextView productName, productDescription, productPrice, productTag, productQuantity;
     }
 
     @Override
@@ -62,6 +64,7 @@ public class AdminProductAdapter extends BaseAdapter {
             holder.productPrice = (TextView) view.findViewById(R.id.admin_product_price);
             holder.productTag = (TextView) view.findViewById(R.id.admin_product_tag);
             holder.btnDelete = (ImageView) view.findViewById(R.id.adminBtnDelete);
+            holder.btnEdit = (ImageView) view.findViewById(R.id.adminBtnEdit);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -79,6 +82,21 @@ public class AdminProductAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 context.DialogDelete(product.getId());
+            }
+        });
+
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(context, UpdateProductActivity.class);
+               intent.putExtra("name", product.getName());
+               intent.putExtra("description", product.getDescription());
+               intent.putExtra("tag", product.getTag());
+               intent.putExtra("image", product.getImage());
+               intent.putExtra("price", product.getPrice());
+               intent.putExtra("quantity", product.getQuantity());
+               intent.putExtra("id", product.getId());
+               context.startActivity(intent);
             }
         });
 

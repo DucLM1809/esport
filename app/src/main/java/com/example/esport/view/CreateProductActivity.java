@@ -18,7 +18,7 @@ import java.util.List;
 
 public class CreateProductActivity extends AppCompatActivity implements ProductView {
     TextInputEditText etName, etDescription, etPrice, etImage, etTag, etQuantity;
-    ImageView btnSave;
+    ImageView btnSave, btnHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,9 @@ public class CreateProductActivity extends AppCompatActivity implements ProductV
         etTag = findViewById(R.id.tag);
         etPrice = findViewById(R.id.price);
         etImage = findViewById(R.id.imageURL);
+        etQuantity = findViewById(R.id.quantity);
         btnSave = findViewById(R.id.btnSaveProduct);
+        btnHome = findViewById(R.id.adminBtnHome);
         ProductPresenter productPresenter = new ProductPresenter(this);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,13 @@ public class CreateProductActivity extends AppCompatActivity implements ProductV
             }
         });
 
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(CreateProductActivity.this, AdminActivity.class);
+               startActivity(intent);
+            }
+        });
     }
 
     @Override
