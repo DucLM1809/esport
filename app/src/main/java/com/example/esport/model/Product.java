@@ -2,14 +2,23 @@ package com.example.esport.model;
 
 public class Product {
     private String name, description, tag, image;
-    private long price, id;
+    private long price, quantity, id;
 
-    public Product(String name, String description, String tag, String image, long price) {
+    public Product(String name, String description, String tag, String image, long price, long quantity) {
         this.name = name;
         this.description = description;
         this.tag = tag;
         this.image = image;
         this.price = price;
+        this.quantity = quantity;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 
     public void setId(long id) {

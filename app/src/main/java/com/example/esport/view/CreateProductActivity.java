@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 public class CreateProductActivity extends AppCompatActivity implements ProductView {
-    TextInputEditText etName, etDescription, etPrice, etImage, etTag;
+    TextInputEditText etName, etDescription, etPrice, etImage, etTag, etQuantity;
     ImageView btnSave;
 
     @Override
@@ -35,13 +35,13 @@ public class CreateProductActivity extends AppCompatActivity implements ProductV
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Click", "click");
                 String name = etName.getText().toString();
                 String description = etDescription.getText().toString();
                 long price = Long.parseLong(etPrice.getText().toString());
                 String tag = etTag.getText().toString();
                 String image = etImage.getText().toString();
-                Product product = new Product(name, description, tag, image, price);
+                long quantity = Long.parseLong(etQuantity.getText().toString());
+                Product product = new Product(name, description, tag, image, price, quantity);
                 if (productPresenter.createProduct(product)) {
                     Toast.makeText(CreateProductActivity.this, "Create Product Successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateProductActivity.this, AdminActivity.class);

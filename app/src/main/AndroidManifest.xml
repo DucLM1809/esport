@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Esport"
         tools:targetApi="31">
         <activity
+            android:name=".view.UpdateProductActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.CreateProductActivity"
             android:exported="false">
             <meta-data

@@ -76,6 +76,25 @@ public class ProductPresenter {
         } catch (Exception e) {
             return false;
         }
+    }
 
+    public boolean deleteProduct (long id) {
+        try {
+            Call<Product> call = productService.deleteProduct(id);
+            call.enqueue(new Callback<Product>() {
+                @Override
+                public void onResponse(Call<Product> call, Response<Product> response) {
+                    getAllProducts();
+                }
+
+                @Override
+                public void onFailure(Call<Product> call, Throwable t) {
+
+                }
+            });
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

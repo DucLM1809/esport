@@ -30,7 +30,7 @@ public class AdminProductAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        ImageView productImg;
+        ImageView productImg, btnDelete;
         TextView productName, productDescription, productPrice, productTag;
     }
 
@@ -61,18 +61,26 @@ public class AdminProductAdapter extends BaseAdapter {
             holder.productDescription = (TextView) view.findViewById(R.id.admin_product_description);
             holder.productPrice = (TextView) view.findViewById(R.id.admin_product_price);
             holder.productTag = (TextView) view.findViewById(R.id.admin_product_tag);
+            holder.btnDelete = (ImageView) view.findViewById(R.id.adminBtnDelete);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
         Product product = productList.get(position);
-        holder.productName.setText(product.getName());
+        holder.productName.setText(product.getName() + " (" + product.getQuantity() + " left)");
         holder.productDescription.setText(product.getDescription());
         holder.productPrice.setText("$" + product.getPrice() + " -");
         holder.productTag.setText(product.getTag());
         Glide.with(context).load(product.getImage()).into(holder.productImg);
         // holder.productImg.setImageBitmap(LoadImageFromWebOperations(product.getImage()));
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.DialogDelete(product.getId());
+            }
+        });
 
         return view;
     }

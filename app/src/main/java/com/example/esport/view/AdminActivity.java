@@ -1,7 +1,9 @@
 package com.example.esport.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.esport.R;
 import com.example.esport.model.Product;
@@ -23,6 +26,7 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
     AdminProductAdapter adminProductAdapter;
     ArrayList<Product> arrayProducts;
     ImageView btnHome, btnCreate;
+    ProductPresenter productPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
         arrayProducts = new ArrayList<>();
         adminProductAdapter = new AdminProductAdapter(this, R.layout.admin_product_item, arrayProducts);
         lvAdminProducts.setAdapter(adminProductAdapter);
-        ProductPresenter productPresenter = new ProductPresenter(this);
+        productPresenter = new ProductPresenter(this);
         productPresenter.getAllProducts();
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -44,15 +48,44 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
                startActivity(intent);
             }
         });
+
+
     }
 
     @Override
     public void productsReady(List<Product> products) {
+        arrayProducts.clear();
         for (Product product : products) {
             arrayProducts.add(product);
         }
         adminProductAdapter = new AdminProductAdapter(this, R.layout.admin_product_item, arrayProducts);
         lvAdminProducts.setAdapter(adminProductAdapter);
         adminProductAdapter.notifyDataSetChanged();
+    }
+
+    private void deleteProduct(long id) {
+        if (productPresenter.deleteProduct(id)) {
+            Toast.makeText(this, "Delete Product Successfully", Toast.LENGTH_SHORT).show();
+        };
+    }
+
+    public void DialogDelete(long id) {
+        AlertDialog.Builder dialogDelete = new AlertDialog.Builder(this);
+        dialogDelete.setMessage("Are you sure to delete this product?");
+        dialogDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteProduct(id);
+            }
+        });
+
+        dialogDelete.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dialogDelete.show();
     }
 }

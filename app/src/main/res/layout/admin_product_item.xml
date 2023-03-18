@@ -17,6 +17,32 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/adminBtnEdit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/signinbutton"
+        android:gravity="center"
+        android:padding="10dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/admin_product_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/adminBtnDelete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/signinbutton"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_baseline_delete_outline_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/admin_product_image"
+        app:layout_constraintTop_toBottomOf="@+id/adminBtnEdit" />
+
     <TextView
         android:id="@+id/admin_product_name"
         android:layout_width="wrap_content"
