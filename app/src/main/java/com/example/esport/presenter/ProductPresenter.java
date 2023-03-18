@@ -1,5 +1,6 @@
 package com.example.esport.presenter;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.esport.model.Product;
@@ -53,5 +54,28 @@ public class ProductPresenter {
                 }
             }
         });
+    }
+
+    public boolean createProduct(Product product) {
+        try {
+            Call<Product> call = productService.createProduct(product);
+            call.enqueue(new Callback<Product>() {
+                @Override
+                public void onResponse(Call<Product> call, Response<Product> response) {
+                    if (response.body() != null) {
+                        getAllProducts();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Product> call, Throwable t) {
+
+                }
+            });
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }
