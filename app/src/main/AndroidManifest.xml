@@ -63,6 +63,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_RdKXXl858baGBh"
+            />
     </application>
 
 </manifest>
