@@ -20,10 +20,10 @@ public interface ProductService {
     Call<Product> getProduct(@Path("id") Object id);
 
     @POST(PRODUCT)
-    Call<Product> createProduct(@Body Product trainee);
+    Call<Product> createProduct(@Body Product product);
 
     @PUT(PRODUCT + "/{id}")
-    Call<Product> updateProduct(@Path("id") Object id, @Body Product trainee);
+    Call<Product> updateProduct(@Path("id") Object id, @Body Product product);
 
     @DELETE(PRODUCT + "/{id}")
     Call<Product> deleteProduct(@Path("id") Object id);

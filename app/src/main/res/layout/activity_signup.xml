@@ -68,10 +68,10 @@
             app:layout_constraintTop_toBottomOf="@+id/subtitle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username"
+                android:id="@+id/emailRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="USERNAME"
+                android:hint="EMAIL"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textField">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+                android:id="@+id/passwordRegister"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordField">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirm_password"
+                android:id="@+id/confirmPasswordRegister"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/signinbutton"
-            android:id="@+id/button5"
+            android:id="@+id/btnRegister"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
@@ -144,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister"
             tools:layout_editor_absoluteX="30dp"
             android:gravity="center"
             >
