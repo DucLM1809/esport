@@ -32,24 +32,43 @@ public class CheckoutActivity extends AppCompatActivity {
         lvCheckoutList = (ListView) findViewById(R.id.lvCheckOutList);
         getIntentData();
         map();
+        tvCheckoutShippingFee=(TextView) findViewById(R.id.tvCheckoutShippingFee);
+        tvCheckoutTotalQuantity=(TextView) findViewById(R.id.tvCheckoutTotalQuantity);
+        tvCheckoutTotalPrice=(TextView) findViewById(R.id.tvCheckoutTotalPrice);
+        tvCheckoutTotalPriceDown=(TextView) findViewById(R.id.tvCheckoutTotalPriceDown);
+        setTextData();
+
+
     };
 
     public void map(){
-
             String iframe = "<iframe src=https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10916.294500899437!2d106.69465322282875!3d10.810847197658997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175289144e07023%3A0x2dc7c386cc4469dc!2zS0lDSEkgS0lDSEkgTmd1eeG7hW4gWMOt!5e0!3m2!1sen!2s!4v1679241231621!5m2!1sen!2s width=600 height=450 style=border:0; allowfullscreen= loading=lazy referrerpolicy=no-referrer-when-downgrade></iframe>";
             webviewmap = (WebView) findViewById(R.id.webViewMap);
             webviewmap.getSettings().setJavaScriptEnabled(true);
             webviewmap.loadData(iframe, "text/html", "utf-8");
-
     }
 
     private void getIntentData(){
         Intent intent = getIntent();
         orderItemArrayList =(ArrayList<OrderItem>) intent.getSerializableExtra("OrderList");
-        Log.d("TAG", " 5555///"+orderItemArrayList.get(0).getProduct().getQuantity());
+
         adapter = new CheckoutProductAdapter(this, R.layout.checkout_item, orderItemArrayList);
         lvCheckoutList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
 
+    public void setTextData(){
+        int totalQuantity=0;
+        long totalPrice=0;
+
+        for(OrderItem orderItem : orderItemArrayList){
+            totalQuantity += orderItem.getQuantity();
+            totalPrice += orderItem.getProduct().getPrice()*orderItem.getQuantity();
+            tvCheckoutTotalQuantity.setText(""+totalQuantity);
+            tvCheckoutTotalPrice.setText("$"+totalPrice);
+            tvCheckoutTotalPriceDown.setText("$"+totalPrice);
+            if(totalQuantity!=0) tvCheckoutShippingFee.setText("$7.5");
+            else tvCheckoutShippingFee.setText("$0");
+        }
     }
 }

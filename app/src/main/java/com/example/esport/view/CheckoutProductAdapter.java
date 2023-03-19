@@ -70,7 +70,7 @@ public class CheckoutProductAdapter extends BaseAdapter {
         Log.d("TAG", "4444: ");
         Glide.with(context).load(orderItem.getProduct().getImage()).into(holder.ivCheckOutOrderImg);
         holder.tvCheckOutOrderName.setText(orderItem.getProduct().getName());
-        holder.tvCheckOutOrderPrice.setText(orderItem.getProduct().getPrice()+"");
+        holder.tvCheckOutOrderPrice.setText("$"+orderItem.getProduct().getPrice()+"");
         holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
 
         holder.btnsub.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,7 @@ public class CheckoutProductAdapter extends BaseAdapter {
                 if(orderItem.getQuantity()>0){
                     orderItem.setQuantity(orderItem.getQuantity()-1);
                     holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
+                    context.setTextData();
                 }
             }
         });
@@ -89,6 +90,7 @@ public class CheckoutProductAdapter extends BaseAdapter {
                 if(orderItem.getQuantity()<orderItem.getProduct().getQuantity()){
                     orderItem.setQuantity(orderItem.getQuantity()+1);
                     holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
+                    context.setTextData();
                 }
             }
         });
