@@ -27,33 +27,44 @@ public class ProductPresenter {
     }
 
     public void getAllProducts() {
-        Call<Product[]> call = productService.getAllProducts();
-        call.enqueue(new Callback<Product[]>() {
-            @Override
-            public void onResponse(Call<Product[]> call, Response<Product[]> response) {
-                Product[] products = response.body();
 
-                if (products == null) {
-                    return;
+        try{
+            Call<Product[]> call = productService.getAllProducts();
+            call.enqueue(new Callback<Product[]>() {
+                @Override
+                public void onResponse(Call<Product[]> call, Response<Product[]> response) {
+                    Product[] products = response.body();
+
+
+                    if (products == null) {
+                        return;
+                    }
+
+                    List<Product> productList = new ArrayList<>();
+                    for (Product product : products) {
+                        productList.add(product);
+                    }
+
+                    productView.productsReady(productList);
                 }
 
-                List<Product> productList = new ArrayList<>();
-                for (Product product : products) {
-                    productList.add(product);
-                }
+                @Override
+                public void onFailure(Call<Product[]> call, Throwable t) {
 
-                productView.productsReady(productList);
-            }
+                    try {
 
-            @Override
-            public void onFailure(Call<Product[]> call, Throwable t) {
-                try {
-                    throw new InterruptedException("Something went wrong!");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        throw new InterruptedException("Something went wrong!");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
+
+        } catch (Exception e){
+            Log.d("TAG", "55555 ");
+            e.printStackTrace();
+        }
+
     }
 
     public boolean createProduct(Product product) {
@@ -115,5 +126,9 @@ public class ProductPresenter {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean getProduct (long id){
+        return true;
     }
 }

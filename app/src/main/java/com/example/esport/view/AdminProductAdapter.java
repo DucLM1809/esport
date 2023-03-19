@@ -75,8 +75,8 @@ public class AdminProductAdapter extends BaseAdapter {
         holder.productDescription.setText(product.getDescription());
         holder.productPrice.setText("$" + product.getPrice() + " -");
         holder.productTag.setText(product.getTag());
-        Glide.with(context).load(product.getImage()).into(holder.productImg);
-        // holder.productImg.setImageBitmap(LoadImageFromWebOperations(product.getImage()));
+        //Glide.with(context).load(product.getImage()).into(holder.productImg);
+         //holder.productImg.setImageBitmap(LoadImageFromWebOperations(product.getImage()));
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

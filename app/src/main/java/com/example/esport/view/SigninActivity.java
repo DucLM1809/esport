@@ -35,7 +35,7 @@ public class SigninActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SigninActivity.this, AdminActivity.class);
+                Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
