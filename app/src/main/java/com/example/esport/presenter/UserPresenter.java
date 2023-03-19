@@ -1,5 +1,7 @@
 package com.example.esport.presenter;
 
+import android.util.Log;
+
 import com.example.esport.model.UserAuthen;
 import com.example.esport.model.UserResponse;
 import com.example.esport.service.UserAuthRepository;
@@ -21,28 +23,20 @@ public class UserPresenter {
         }
     }
 
-    public boolean register(UserAuthen user) {
-        try {
-            Call<UserResponse> call = userService.register(user);
-            call.enqueue(new Callback<UserResponse>() {
-                @Override
-                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                    UserResponse user = response.body();
-                    if (user == null) {
-                        return;
-                    }
+    public void register(UserAuthen user) {
+        Call<UserResponse> call = userService.register(user);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                UserResponse user = response.body();
 
-                    userAuthView.userAuthReady(user);
-                }
+                userAuthView.userAuthReady(user);
+            }
 
-                @Override
-                public void onFailure(Call<UserResponse> call, Throwable t) {
-
-                }
-            });
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.d("Error", t.toString());
+            }
+        });
     }
 }

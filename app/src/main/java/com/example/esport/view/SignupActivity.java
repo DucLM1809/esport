@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,6 +60,11 @@ public class SignupActivity extends AppCompatActivity implements UserAuthView {
                     return;
                 }
 
+                if (!password.matches("^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\\W).*$")) {
+                    Toast.makeText(SignupActivity.this, "Password must contain at least one lower character, one upper character, digit or special symbol", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (confirmPassword.equals("")) {
                     Toast.makeText(SignupActivity.this, "Confirm password is required", Toast.LENGTH_SHORT).show();
                     return;
@@ -68,20 +74,23 @@ public class SignupActivity extends AppCompatActivity implements UserAuthView {
                     Toast.makeText(SignupActivity.this, "Confirm password is not same as password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                
                 UserAuthen user = new UserAuthen(email, password);
-                if (userPresenter.register(user)) {
-                    Toast.makeText(SignupActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
-                    startActivity(intent);
-                }
+                userPresenter.register(user);
+
             }
         });
 
     }
 
     @Override
-    public void userAuthReady(UserResponse user) {
-
+    public void userAuthReady(UserResponse userAuthen) {
+        if (userAuthen == null) {
+            Toast.makeText(SignupActivity.this, "Email is already taken", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(SignupActivity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
+            startActivity(intent);
+        }
     }
 }
