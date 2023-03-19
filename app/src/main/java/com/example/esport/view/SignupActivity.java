@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.esport.R;
+import com.example.esport.model.TokenResponse;
 import com.example.esport.model.UserAuthen;
 import com.example.esport.model.UserResponse;
 import com.example.esport.presenter.UserPresenter;
@@ -77,7 +78,6 @@ public class SignupActivity extends AppCompatActivity implements UserAuthView {
                 
                 UserAuthen user = new UserAuthen(email, password);
                 userPresenter.register(user);
-
             }
         });
 
@@ -92,5 +92,15 @@ public class SignupActivity extends AppCompatActivity implements UserAuthView {
             Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void loginReady(TokenResponse tokenResponse) {
+
+    }
+
+    @Override
+    public void userReady(UserResponse userResponse) {
+
     }
 }

@@ -1,7 +1,5 @@
 package com.example.esport.presenter;
 
-import android.content.Intent;
-import android.util.Log;
 
 import com.example.esport.model.Product;
 import com.example.esport.service.ProductRepository;

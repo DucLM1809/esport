@@ -2,9 +2,9 @@ package com.example.esport.model;
 
 public class UserResponse {
     private String email;
-    private String isAdmin;
+    private boolean isAdmin;
 
-    public UserResponse(String email, String isAdmin) {
+    public UserResponse(String email, boolean isAdmin) {
         this.email = email;
         this.isAdmin = isAdmin;
     }
@@ -17,11 +17,11 @@ public class UserResponse {
         this.email = email;
     }
 
-    public String getIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(String isAdmin) {
+    public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 }

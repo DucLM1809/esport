@@ -3,8 +3,10 @@ package com.example.esport.view;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.esport.App;
 import com.example.esport.R;
 import com.example.esport.model.Product;
 import com.example.esport.presenter.ProductPresenter;
@@ -25,8 +28,9 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
     ListView lvAdminProducts;
     AdminProductAdapter adminProductAdapter;
     ArrayList<Product> arrayProducts;
-    ImageView btnHome, btnCreate;
+    ImageView btnLogout, btnCreate;
     ProductPresenter productPresenter;
+    Context context = App.getInstance().getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
         setContentView(R.layout.activity_admin);
 
         btnCreate = (ImageView) findViewById(R.id.adminBtnCreate);
+        btnLogout = (ImageView) findViewById(R.id.adminBtnLogout);
         lvAdminProducts = (ListView) findViewById(R.id.adminListViewProduct);
         arrayProducts = new ArrayList<>();
         adminProductAdapter = new AdminProductAdapter(this, R.layout.admin_product_item, arrayProducts);
@@ -46,6 +51,19 @@ public class AdminActivity extends AppCompatActivity implements ProductView {
             public void onClick(View v) {
                Intent intent = new Intent(AdminActivity.this, CreateProductActivity.class);
                startActivity(intent);
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("accessToken");
+                editor.apply();
+                Intent intent = new Intent(AdminActivity.this, SigninActivity.class);
+                startActivity(intent);
+                Toast.makeText(AdminActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
