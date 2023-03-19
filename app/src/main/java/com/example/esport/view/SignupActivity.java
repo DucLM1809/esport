@@ -103,4 +103,9 @@ public class SignupActivity extends AppCompatActivity implements UserAuthView {
     public void userReady(UserResponse userResponse) {
 
     }
+
+    @Override
+    public void userError(String err) {
+        Toast.makeText(SignupActivity.this, err, Toast.LENGTH_SHORT).show();
+    }
 }

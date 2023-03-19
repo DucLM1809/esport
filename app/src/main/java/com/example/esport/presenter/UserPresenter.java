@@ -33,8 +33,11 @@ public class UserPresenter {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 UserResponse user = response.body();
-
-                userAuthView.userAuthReady(user);
+                if (user != null) {
+                    userAuthView.userAuthReady(user);
+                } else {
+                    userAuthView.userError("Email is already taken");
+                }
             }
 
             @Override
@@ -53,6 +56,8 @@ public class UserPresenter {
 
                 if (tokenResponse != null) {
                     userAuthView.loginReady(tokenResponse);
+                } else {
+                    userAuthView.userError("Invalid Credentials");
                 }
 
             }
@@ -71,7 +76,6 @@ public class UserPresenter {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 UserResponse userResponse = response.body();
                 if (response.body() != null) {
-                    Log.d("Test", userResponse.getEmail());
                     userAuthView.userReady(userResponse);
                 }
             }
