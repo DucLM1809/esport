@@ -7,5 +7,6 @@ public interface UserAuthView {
     void userAuthReady(UserResponse user);
     void loginReady(TokenResponse token);
     void userReady(UserResponse user);
+    void userError(String err);
 }
 

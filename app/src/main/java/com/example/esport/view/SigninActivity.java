@@ -99,8 +99,6 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
     @Override
     public void userReady(UserResponse userResponse) {
         if (userResponse != null) {
-            Log.d("Email", userResponse.getEmail());
-            Log.d("isAdmin", userResponse.getIsAdmin() + "");
             if (userResponse.getIsAdmin()) {
                 Intent intent = new Intent(SigninActivity.this, AdminActivity.class);
                 startActivity(intent);
@@ -111,5 +109,10 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
         } else {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void userError(String err) {
+        Toast.makeText(this, err, Toast.LENGTH_SHORT).show();
     }
 }
