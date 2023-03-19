@@ -25,7 +25,6 @@ public class APIClient {
     private static Retrofit retrofit;
     static Context context = App.getInstance().getApplicationContext();
 
-
     public static Retrofit getClient() {
         SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         String accessToken = preferences.getString("accessToken", "");
@@ -54,8 +53,6 @@ public class APIClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-
-
 
         return retrofit;
     }
