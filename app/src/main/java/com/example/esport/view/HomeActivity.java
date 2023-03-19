@@ -26,7 +26,6 @@ public class HomeActivity extends AppCompatActivity implements ProductView  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         gvProduct = (GridView) findViewById(R.id.gridProduct);
         productList = new ArrayList<>();
         adapter = new HomeProductAdapter(this, R.layout.home_product_grid_item, productList);
@@ -43,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements ProductView  {
     @Override
     public void productsReady(List<Product> products) {
         productList.clear();
-        Log.d("TAG", products.size()+"");
+
         for (Product product : products) {
             productList.add(product);
         }

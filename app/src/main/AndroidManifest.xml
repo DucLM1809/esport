@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Esport"
         tools:targetApi="31">
         <activity
-            android:name=".CheckoutActivity"
+            android:name=".view.CheckoutActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -106,7 +106,7 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
                 Intent intent = new Intent(SigninActivity.this, AdminActivity.class);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+                Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         } else {

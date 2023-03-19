@@ -96,6 +96,7 @@ public class AdminProductAdapter extends BaseAdapter {
                intent.putExtra("price", product.getPrice());
                intent.putExtra("quantity", product.getQuantity());
                intent.putExtra("id", product.getId());
+
                context.startActivity(intent);
             }
         });

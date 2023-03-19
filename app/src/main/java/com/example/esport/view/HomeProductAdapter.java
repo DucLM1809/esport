@@ -1,6 +1,8 @@
 package com.example.esport.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.esport.R;
+import com.example.esport.model.OrderItem;
 import com.example.esport.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeProductAdapter extends BaseAdapter {
@@ -69,6 +73,17 @@ public class HomeProductAdapter extends BaseAdapter {
         holder.tvproductName.setText(product.getName() + " (" + product.getQuantity() + " left)");
         Glide.with(context).load(product.getImage()).into(holder.productImg);
         holder.tvproductPrice.setText("$" + product.getPrice() + "");
+
+        holder.btnBuyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<OrderItem> OrderItemList = new ArrayList<>();
+                OrderItemList.add(new OrderItem(product,1));
+                Intent intent = new Intent(context, CheckoutActivity.class);
+                intent.putExtra("OrderList",OrderItemList);
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }
