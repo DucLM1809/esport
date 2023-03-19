@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextrounded"
                 android:hint="QUANTITY"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
