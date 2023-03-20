@@ -11,7 +11,9 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ProductService {
+
     String PRODUCT = "products";
+
 
     @GET(PRODUCT)
     Call<Product[]> getAllProducts();

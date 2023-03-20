@@ -15,8 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Esport"
         tools:targetApi="31">
+
         <activity
-            android:name=".ViewCart"
+            android:name=".view.AboutActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".view.CheckoutActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
