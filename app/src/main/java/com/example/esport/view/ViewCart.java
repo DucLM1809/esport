@@ -24,8 +24,6 @@ import com.example.esport.service.CartService;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.RecentlyViewedAdapter;
-import Adapter.ViewCartAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -102,9 +100,7 @@ public class ViewCart extends AppCompatActivity implements CartView {
                     ItemResponse itemResponse = new ItemResponse(orderItem.getId(), orderItem.getCartQuantity());
                     itemResponseList.add(itemResponse);
                 }
-                Log.d("ITEMRESS", "onResponse: " + itemResponseList.size());
                 itemResponseList.remove(i);
-                Log.d("ItemAFTER", "onResponse: " + itemResponseList.size());
 
                 cartResponse = new CartResponse(itemResponseList);
                 cartPresenter.updateMyCart(cartResponse);
@@ -143,6 +139,44 @@ public class ViewCart extends AppCompatActivity implements CartView {
                 Intent i = new Intent(ViewCart.this, CheckoutActivity.class);
                 i.putExtra("OrderList", (ArrayList)orderItemList);
                 startActivity(i);
+            }
+        });
+    }
+
+    public void setDataCartItem(int i, long qty) {
+        CartPresenter cartPresenter = new CartPresenter(this);
+
+        itemResponseList = new ArrayList<>();
+        cartService = CartRepository.getCartService();
+        Call <Cart> call = cartService.getMyCart();
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                Cart cart = response.body();
+
+                if(cart == null){
+                    return;
+                }
+                List<OrderItem> OrderItemList = new ArrayList<>();
+                for(int i=0;i< cart.getProducts().size();i++){
+                    OrderItemList.add(cart.getProducts().get(i));
+                }
+                for(OrderItem orderItem: OrderItemList ){
+                    ItemResponse itemResponse = new ItemResponse(orderItem.getId(), orderItem.getCartQuantity());
+                    itemResponseList.add(itemResponse);
+                }
+                itemResponseList.get(i).setQuantity(qty);
+
+                cartResponse = new CartResponse(itemResponseList);
+                cartPresenter.updateMyCart(cartResponse);
+
+            }
+
+
+
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+
             }
         });
     }

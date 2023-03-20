@@ -1,4 +1,4 @@
-package Adapter;
+package com.example.esport.view;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -14,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.esport.R;
 import com.example.esport.model.OrderItem;
-import com.example.esport.model.Product;
 import com.example.esport.presenter.CartPresenter;
-import com.example.esport.view.CartView;
-import com.example.esport.view.ViewCart;
 
 import java.util.List;
 
@@ -56,6 +53,26 @@ public class ViewCartAdapter extends RecyclerView.Adapter<ViewCartAdapter.ViewCa
                 context.deleteCartItem(position);
             }
         });
+
+        holder.btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (item.getCartQuantity() > 1) {
+                    item.setCartQuantity(item.getCartQuantity()-1);
+                    holder.qty.setText(item.getCartQuantity()+ "");
+                    context.setDataCartItem(position, item.getCartQuantity());
+                }
+            }
+        });
+
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                item.setCartQuantity(item.getCartQuantity()+1);
+                holder.qty.setText(item.getCartQuantity()+"");
+                context.setDataCartItem(position,item.getCartQuantity());
+            }
+        });
     }
 
     @Override
@@ -66,7 +83,7 @@ public class ViewCartAdapter extends RecyclerView.Adapter<ViewCartAdapter.ViewCa
     public  static class ViewCartViewHolder extends RecyclerView.ViewHolder implements CartView {
         TextView name, price, qty;
         ImageView img;
-        Button btnRemove;
+        Button btnRemove, btnSub, btnAdd;
 
 
         public ViewCartViewHolder(@NonNull View itemView) {
@@ -76,6 +93,8 @@ public class ViewCartAdapter extends RecyclerView.Adapter<ViewCartAdapter.ViewCa
             price = itemView.findViewById(R.id.textViewPrice);
             btnRemove = itemView.findViewById(R.id.buttonRemove);
             qty = itemView.findViewById(R.id.tvCartIemQuantity);
+            btnSub =itemView.findViewById(R.id.buttonSub);
+            btnAdd = itemView.findViewById(R.id.buttonAdd);
 
             CartPresenter cartPresenter = new CartPresenter(this);
 
