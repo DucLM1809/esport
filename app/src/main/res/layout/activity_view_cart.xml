@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="@+id/backCart" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonCheckoutCart"
         android:layout_width="157dp"
         android:layout_height="49dp"
         android:text="Check out"

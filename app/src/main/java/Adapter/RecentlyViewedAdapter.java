@@ -52,18 +52,18 @@ public class RecentlyViewedAdapter extends RecyclerView.Adapter<RecentlyViewedAd
         holder.price.setText("$"+product.getPrice());
         Glide.with(context).load(product.getImage()).into(holder.img);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i=new Intent(context, ProductDetails.class);
-                i.putExtra("product", product);
-
-
-                context.startActivity(i);
-
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent i=new Intent(context, ProductDetails.class);
+//                i.putExtra("product", product);
+//
+//
+//                context.startActivity(i);
+//
+//            }
+//        });
 
     }
 

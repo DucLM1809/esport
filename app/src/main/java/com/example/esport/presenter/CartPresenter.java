@@ -37,7 +37,6 @@ public class CartPresenter {
                 if(cart == null){
                     return;
                 }
-                Log.d("getCart", "122246: ");
                 List<OrderItem> itemList = new ArrayList<>();
                 for(int i=0;i< cart.getProducts().size();i++){
                     itemList.add(cart.getProducts().get(i));
@@ -61,7 +60,6 @@ public class CartPresenter {
                 public void onResponse(Call<Cart> call, Response<Cart> response) {
                     getMyCart();
                     if(response.body()!=null){
-                        Log.d("thanh cong ne", " tungtungtungtung " );
                     }
                 }
 
@@ -75,4 +73,5 @@ public class CartPresenter {
             return false;
         }
     }
+
 }

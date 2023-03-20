@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class ProductDetails extends AppCompatActivity implements CartView {
 
     ImageView img, back, cart;
-    TextView proName, proPrice, proDesc, proQty, proUnit;
+    TextView proName, proPrice, proDesc;
     Button btnAddToCart, btnCheckout, btnViewCart;
     TextView dialogName, dialogPrice;
     Button btnDialogCheckout, btnDialogViewCart;
@@ -44,7 +44,8 @@ public class ProductDetails extends AppCompatActivity implements CartView {
     String image;
     CartResponse cartResponse = new CartResponse();
     ArrayList <ItemResponse> itemResponseList;
-
+    Product product;
+    CartService cartService;
 
 
     @Override
@@ -53,7 +54,7 @@ public class ProductDetails extends AppCompatActivity implements CartView {
         setContentView(R.layout.activity_product_details);
 
         Intent i = getIntent();
-        Product product = (Product) i.getSerializableExtra("product");
+        product = (Product) i.getSerializableExtra("product");
 
         name = product.getName();
         image = product.getImage();
@@ -81,42 +82,89 @@ public class ProductDetails extends AppCompatActivity implements CartView {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(ProductDetails.this, MainActivity.class);
+                Intent i = new Intent(ProductDetails.this, HomeActivity.class);
                 startActivity(i);
                 finish();
 
             }
         });
 
-//        cart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(ProductDetails.this, Checkout.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProductDetails.this, ViewCart.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 
-        ArrayList<ItemResponse> list = new ArrayList<>();
+        itemResponseList = new ArrayList<>();
 
 
         CartPresenter cartPresenter = new CartPresenter(this);
+        cartService = CartRepository.getCartService();
 
+        Call <Cart> call = cartService.getMyCart();
+        call.enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                Cart cart = response.body();
+
+                if(cart == null){
+                    return;
+                }
+                List<OrderItem> OrderItemList = new ArrayList<>();
+                for(int i=0;i< cart.getProducts().size();i++){
+                    OrderItemList.add(cart.getProducts().get(i));
+                }
+                for(OrderItem orderItem: OrderItemList ){
+                    ItemResponse itemResponse = new ItemResponse(orderItem.getId(), orderItem.getCartQuantity());
+                    itemResponseList.add(itemResponse);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+
+            }
+        });
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 long id, quantity;
                 id =product.getId();
                 quantity = 1;
-                ItemResponse item = new ItemResponse(id,quantity);
-                cartPresenter.getMyCart();
-                itemResponseList = new ArrayList<>();
+                Log.d("Tungtungtung", itemResponseList.size() + "");
 
-                itemResponseList.add(item);
+                if(itemResponseList.size() == 0){
+
+                    ItemResponse newItem = new ItemResponse(id,quantity);
+                    itemResponseList.add(newItem);
+                }
+
+                else{
+                    boolean flag = false;
+                    for(int i=0; i< itemResponseList.size(); i++){
+                        ItemResponse item = itemResponseList.get(i);
+                        if(item.getId() == id){
+                            item.setQuantity(item.getQuantity()+1);
+                            Log.d("IFTREENNENN", item.getId()+ "");
+                            flag = true;
+                        }
+                    }
+                    if(!flag){
+                        ItemResponse newItem = new ItemResponse(id,1);
+                        itemResponseList.add(newItem);
+                    }
+
+                }
+
 
                 cartResponse = new CartResponse(itemResponseList);
-
 
 
                 if(cartPresenter.updateMyCart(cartResponse)){
@@ -165,14 +213,10 @@ public class ProductDetails extends AppCompatActivity implements CartView {
 
     @Override
     public void CartReady(List<OrderItem> items) {
-        orderItemList = items;
-        for(OrderItem orderItem: orderItemList ){
-            ItemResponse itemResponse = new ItemResponse(orderItem.getId(), orderItem.getCartQuantity());
-            itemResponseList.add(itemResponse);
-        }
-        Log.d("cartResponse", cartResponse.getProducts().size()+ "");
 
-        Log.d("ItemSize", "CartReady: " + items.size());
+        orderItemList = items;
+
+
     }
 
     @Override

@@ -85,6 +85,15 @@ public class HomeProductAdapter extends BaseAdapter {
             }
         });
 
+        holder.btnAddToCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ProductDetails.class);
+                i.putExtra("product", product);
+                context.startActivity(i);
+            }
+        });
+
         return view;
     }
 }
