@@ -2,8 +2,11 @@ package com.example.esport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity implements OrderView,User
     OrderPresenter orderPresenter;
     UserPresenter userPresenter;
     ArrayList<OrderResponse> orderResponseList = new ArrayList<>();
+    ImageView iconHome,iconCart,iconAbout;
 
 
     @Override
@@ -35,9 +39,44 @@ public class ProfileActivity extends AppCompatActivity implements OrderView,User
         lvOrder =(ListView) findViewById(R.id.lvProfileOrders);
         orderPresenter = new OrderPresenter(this);
         userPresenter = new UserPresenter(this);
+        iconHome=(ImageView)findViewById(R.id.iconHome);
+        iconCart=(ImageView)findViewById(R.id.iconCart);
+        iconAbout=(ImageView)findViewById(R.id.iconAbout);
 
         orderPresenter.getAllOrders();
         userPresenter.getUser();
+
+        iconHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
+        iconAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(ProfileActivity.this, AboutActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
+        iconCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfileActivity.this, CartView.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
 
 
     }

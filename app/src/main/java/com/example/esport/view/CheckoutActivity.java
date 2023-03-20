@@ -2,6 +2,7 @@ package com.example.esport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,12 +30,14 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
     private WebView webviewmap;
     ListView lvCheckoutList;
     TextView tvCheckoutTotalQuantity, tvCheckoutShippingFee, tvCheckoutTotalPrice, tvCheckoutTotalPriceDown;
+    ImageView iconback;
     EditText etShippingAddress, etCity;
     Button btnBuy;
     CheckoutProductAdapter adapter;
     ArrayList<OrderItem> orderItemArrayList;
     int totalQuantity=0;
     long totalPrice=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,17 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
         tvCheckoutTotalPriceDown=(TextView) findViewById(R.id.tvCheckoutTotalPriceDown);
         etShippingAddress = (EditText) findViewById(R.id.edShipAddress);
         etCity = (EditText) findViewById(R.id.etCity) ;
+        iconback = (ImageView) findViewById(R.id.iconback);
 
         btnBuy = (Button) findViewById(R.id.tvCheckoutBuy) ;
+
+        iconback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckoutActivity.this,HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -115,7 +128,9 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
 
         for(OrderItem orderItem : orderItemArrayList){
             totalQuantity += orderItem.getCartQuantity();
+
             totalPrice += orderItem.getPrice()*orderItem.getCartQuantity();
+
             tvCheckoutTotalQuantity.setText(""+totalQuantity);
             tvCheckoutTotalPrice.setText("$"+totalPrice);
             tvCheckoutTotalPriceDown.setText("$"+totalPrice);

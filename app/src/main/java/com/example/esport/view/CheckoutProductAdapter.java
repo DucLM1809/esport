@@ -88,8 +88,10 @@ public class CheckoutProductAdapter extends BaseAdapter {
         holder.btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(orderItem.getCartQuantity()<orderItem.getQuantity()){
                     orderItem.setCartQuantity(orderItem.getCartQuantity()+1);
+
                     holder.tvCHeckOutOrderQuantity.setText(orderItem.getCartQuantity()+"");
                     context.setTextData();
                 }

@@ -2,13 +2,14 @@ package com.example.esport.model;
 
 import java.io.Serializable;
 
+
 public class OrderItem implements Serializable{
     private String name, description, tag, image;
     private long price, quantity, id;
-    private int cartQuantity;
+    private long cartQuantity;
 
 
-    public OrderItem(String name, String description, String tag, String image, long price, long quantity, long id, int cartQuantity) {
+    public OrderItem(String name, String description, String tag, String image, long price, long quantity, long id, long cartQuantity) {
         this.name = name;
         this.description = description;
         this.tag = tag;
@@ -19,13 +20,7 @@ public class OrderItem implements Serializable{
         this.cartQuantity = cartQuantity;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getDescription() {
         return description;
@@ -33,6 +28,34 @@ public class OrderItem implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public OrderItem(String name, String tag, long price, long quantity, String image, long cartQuantity) {
+        this.name = name;
+        this.tag = tag;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.cartQuantity = cartQuantity;
+    }
+
+    public OrderItem(long id, String name, String tag, long price, long quantity, String image, long cartQuantity) {
+        this.id = id;
+        this.name = name;
+        this.tag = tag;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.cartQuantity = cartQuantity;
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTag() {
@@ -43,6 +66,7 @@ public class OrderItem implements Serializable{
         this.tag = tag;
     }
 
+
     public String getImage() {
         return image;
     }
@@ -50,6 +74,7 @@ public class OrderItem implements Serializable{
     public void setImage(String image) {
         this.image = image;
     }
+
 
     public long getPrice() {
         return price;
@@ -67,6 +92,7 @@ public class OrderItem implements Serializable{
         this.quantity = quantity;
     }
 
+
     public long getId() {
         return id;
     }
@@ -75,14 +101,14 @@ public class OrderItem implements Serializable{
         this.id = id;
     }
 
-    public int getCartQuantity() {
+    public long getCartQuantity() {
         return cartQuantity;
     }
 
-    public void setCartQuantity(int cartQuantity) {
+
+    public void setCartQuantity(long cartQuantity) {
+
         this.cartQuantity = cartQuantity;
     }
 }
-
-
 

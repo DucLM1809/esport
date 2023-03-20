@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
     UserPresenter userPresenter;
     UserResponse userRes;
     TextView tvHello;
-    ImageView iconAbout,iconProfile;
+    ImageView iconAbout,iconProfile,iconCart;
 
 
 
@@ -61,6 +61,15 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
         userPresenter.getUser();
         iconAbout = (ImageView) findViewById(R.id.iconAbout);
         iconProfile = (ImageView) findViewById(R.id.iconProfile);
+        iconCart = (ImageView) findViewById(R.id.iconCart);
+
+        iconCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,ViewCart.class);
+                startActivity(intent);
+            }
+        });
 
         iconProfile.setOnClickListener(new View.OnClickListener() {
             @Override

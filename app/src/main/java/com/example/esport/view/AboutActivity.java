@@ -12,20 +12,47 @@ import com.example.esport.R;
 
 public class AboutActivity extends AppCompatActivity {
 
+
+
     WebView webviewmap;
-    ImageView iconHome;
+    ImageView iconHome,iconCart, iconProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         map();
+
         iconHome = (ImageView) findViewById(R.id.iconHome);
+        iconCart = (ImageView) findViewById(R.id.iconCart);
+        iconProfile = (ImageView) findViewById(R.id.iconProfile);
         iconHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AboutActivity.this,HomeActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        iconProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(AboutActivity.this, ProfileActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
+        iconCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(AboutActivity.this, CartView.class);
+                startActivity(i);
+                finish();
+
             }
         });
     }
