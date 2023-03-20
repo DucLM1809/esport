@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1021217821025",
+    "project_id": "rito-381121",
+    "storage_bucket": "rito-381121.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021217821025:android:d8a124cc381ddc265f3520",
+        "android_client_info": {
+          "package_name": "com.example.esport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021217821025-vlupbqm4r8lp61hppc9ddbneg3ls29n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzP9cXp6YtX9zXZuebHt4r3AupILrxG70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021217821025-vlupbqm4r8lp61hppc9ddbneg3ls29n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

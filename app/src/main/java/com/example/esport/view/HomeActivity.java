@@ -1,11 +1,20 @@
 package com.example.esport.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +26,7 @@ import com.example.esport.model.TokenResponse;
 import com.example.esport.model.UserResponse;
 import com.example.esport.presenter.ProductPresenter;
 import com.example.esport.presenter.UserPresenter;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +40,10 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
     UserPresenter userPresenter;
     UserResponse userRes;
     TextView tvHello;
-    ImageView iconAbout;
+    ImageView iconAbout,iconProfile;
+
+
+
 
 
     @Override
@@ -47,6 +60,15 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
         userPresenter = new UserPresenter(this);
         userPresenter.getUser();
         iconAbout = (ImageView) findViewById(R.id.iconAbout);
+        iconProfile = (ImageView) findViewById(R.id.iconProfile);
+
+        iconProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         iconAbout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +78,12 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
             }
         });
 
+
     }
 
     @Override
     public void productsReady(List<Product> products) {
+
         productList.clear();
         for (Product product : products) {
             productList.add(product);
@@ -90,4 +114,6 @@ public class HomeActivity extends AppCompatActivity implements ProductView,UserA
     public void userError(String err) {
 
     }
+
+
 }

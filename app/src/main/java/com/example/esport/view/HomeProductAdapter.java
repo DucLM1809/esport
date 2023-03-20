@@ -78,9 +78,17 @@ public class HomeProductAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 ArrayList<OrderItem> OrderItemList = new ArrayList<>();
-                OrderItemList.add(new OrderItem(product,1));
+                OrderItemList.add(new OrderItem(product.getName(),product.getDescription(),product.getTag(), product.getImage(), product.getPrice(), product.getQuantity(), product.getId(), 1));
                 Intent intent = new Intent(context, CheckoutActivity.class);
                 intent.putExtra("OrderList",OrderItemList);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.productImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ProductDetails.class);
                 context.startActivity(intent);
             }
         });

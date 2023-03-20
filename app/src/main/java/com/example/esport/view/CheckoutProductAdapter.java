@@ -67,31 +67,33 @@ public class CheckoutProductAdapter extends BaseAdapter {
         }
 
         OrderItem orderItem = orderItemList.get(position);
-        Log.d("TAG", "4444: ");
-        Glide.with(context).load(orderItem.getProduct().getImage()).into(holder.ivCheckOutOrderImg);
-        holder.tvCheckOutOrderName.setText(orderItem.getProduct().getName());
-        holder.tvCheckOutOrderPrice.setText("$"+orderItem.getProduct().getPrice()+"");
-        holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
+
+        Glide.with(context).load(orderItem.getImage()).into(holder.ivCheckOutOrderImg);
+        holder.tvCheckOutOrderName.setText(orderItem.getName());
+        holder.tvCheckOutOrderPrice.setText("$"+orderItem.getPrice()+"");
+        holder.tvCHeckOutOrderQuantity.setText(orderItem.getCartQuantity()+"");
 
         holder.btnsub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(orderItem.getQuantity()>0){
-                    orderItem.setQuantity(orderItem.getQuantity()-1);
-                    holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
+                if(orderItem.getCartQuantity()>0){
+                    orderItem.setCartQuantity(orderItem.getCartQuantity()-1);
+                    holder.tvCHeckOutOrderQuantity.setText(orderItem.getCartQuantity()+"");
                     context.setTextData();
                 }
+                context.setEnableButton();
             }
         });
 
         holder.btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(orderItem.getQuantity()<orderItem.getProduct().getQuantity()){
-                    orderItem.setQuantity(orderItem.getQuantity()+1);
-                    holder.tvCHeckOutOrderQuantity.setText(orderItem.getQuantity()+"");
+                if(orderItem.getCartQuantity()<orderItem.getQuantity()){
+                    orderItem.setCartQuantity(orderItem.getCartQuantity()+1);
+                    holder.tvCHeckOutOrderQuantity.setText(orderItem.getCartQuantity()+"");
                     context.setTextData();
                 }
+                context.setEnableButton();
             }
         });
 
