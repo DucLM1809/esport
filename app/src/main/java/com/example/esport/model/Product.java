@@ -1,6 +1,8 @@
 package com.example.esport.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String name, description, tag, image;
     private long price, quantity, id;
 
@@ -12,6 +14,8 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
     }
+
+
 
     public long getQuantity() {
         return quantity;
