@@ -2,14 +2,18 @@ package com.example.esport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.esport.App;
 import com.example.esport.R;
 import com.example.esport.model.TokenResponse;
 import com.example.esport.model.UserResponse;
@@ -29,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity implements OrderView,User
     UserPresenter userPresenter;
     ArrayList<OrderResponse> orderResponseList = new ArrayList<>();
     ImageView iconHome,iconCart,iconAbout;
-
+    Context context = App.getInstance().getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements OrderView,User
         iconHome=(ImageView)findViewById(R.id.iconHome);
         iconCart=(ImageView)findViewById(R.id.iconCart);
         iconAbout=(ImageView)findViewById(R.id.iconAbout);
+        ImageView btnLogout = (ImageView) findViewById(R.id.userBtnLogout);
 
         orderPresenter.getAllOrders();
         userPresenter.getUser();
@@ -78,7 +83,18 @@ public class ProfileActivity extends AppCompatActivity implements OrderView,User
             }
         });
 
-
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("accessToken");
+                editor.apply();
+                Intent intent = new Intent(ProfileActivity.this, SigninActivity.class);
+                startActivity(intent);
+                Toast.makeText(ProfileActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

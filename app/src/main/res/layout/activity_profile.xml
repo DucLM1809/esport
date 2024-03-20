@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".view.ProfileActivity">
 
+    <ImageView
+        android:id="@+id/userBtnLogout"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32px"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/signinbutton"
+        android:gravity="center"
+        android:padding="18dp"
+        android:src="@drawable/ic_baseline_logout_24"
+        app:layout_constraintBottom_toTopOf="@+id/adminListViewProduct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
