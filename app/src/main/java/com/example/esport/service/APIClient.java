@@ -21,7 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    private static String baseURL = "https://esport.ttq186.dev/";
+    private static String baseURL = "http://152.42.168.161:8000/";
     private static Retrofit retrofit;
     static Context context = App.getInstance().getApplicationContext();
 
