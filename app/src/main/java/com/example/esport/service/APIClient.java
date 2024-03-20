@@ -21,7 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    private static String baseURL = "http://152.42.168.161:8000/";
+    private static String baseURL = "https://esport.ttq186.dev/";
     private static Retrofit retrofit;
     static Context context = App.getInstance().getApplicationContext();
 
@@ -34,7 +34,7 @@ public class APIClient {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request newRequest  = chain.request().newBuilder()
+                Request newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + accessToken)
                         .build();
                 return chain.proceed(newRequest);
