@@ -52,6 +52,8 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
 
@@ -72,6 +74,7 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
 
                 UserAuthen user = new UserAuthen(email, password);
                 userPresenter.login(user);
+
             }
         });
     }
@@ -103,7 +106,7 @@ public class SigninActivity extends AppCompatActivity implements UserAuthView {
                 Intent intent = new Intent(SigninActivity.this, AdminActivity.class);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+                Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         } else {

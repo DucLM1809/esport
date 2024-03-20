@@ -34,7 +34,7 @@ public class APIClient {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request newRequest  = chain.request().newBuilder()
+                Request newRequest = chain.request().newBuilder()
                         .addHeader("Authorization", "Bearer " + accessToken)
                         .build();
                 return chain.proceed(newRequest);
