@@ -21,5 +21,5 @@ public interface CartService {
     Call<Cart> updateMyCart( @Body CartResponse cartResponse);
 
     @DELETE(CART + "/me")
-    Call<Product> deleteProduct();
+    Call<Cart> deleteMyCart();
 }

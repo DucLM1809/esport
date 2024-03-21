@@ -8,9 +8,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.esport.R;
+import com.example.esport.model.OrderItem;
+import com.example.esport.model.orderResponse.OrderItemResponse;
 import com.example.esport.model.orderResponse.OrderResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileAdapter extends BaseAdapter {
 
@@ -59,9 +62,14 @@ public class ProfileAdapter extends BaseAdapter {
         }
 
         OrderResponse orderResponse = orderResponseArrayList.get(position);
+        long totalPrice = 0;
+        ArrayList<OrderItemResponse> orderItemList = orderResponse.getOrderItems();
+        for (OrderItemResponse orderItem: orderItemList) {
+            totalPrice = orderItem.getPrice() * orderItem.getQuantity();
+        }
         holder.tvname.setText(orderResponse.getOrderItems().get(0).getProduct().getName()+" and "+(orderResponse.getOrderItems().size()-1)+" others");
         holder.tvaddress.setText("Shipping to: "+orderResponse.getCity());
-        holder.tvprice.setText("$"+orderResponse.getOrderItems().size());
+        holder.tvprice.setText("$"+totalPrice);
         return view;
     }
 }

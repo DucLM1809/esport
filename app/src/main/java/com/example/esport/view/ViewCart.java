@@ -166,6 +166,7 @@ public class ViewCart extends AppCompatActivity implements CartView {
         }
         tvTotal.setText("$"+total);
 
+
         viewCartAdapter = new ViewCartAdapter(ViewCart.this,R.layout.item_cart_row,orderItemList);
         ViewCartItem.setAdapter(viewCartAdapter);
         viewCartAdapter.notifyDataSetChanged();

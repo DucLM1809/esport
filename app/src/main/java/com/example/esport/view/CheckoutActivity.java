@@ -16,23 +16,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.esport.R;
+import com.example.esport.model.Cart;
 import com.example.esport.model.OrderItem;
 import com.example.esport.model.orderRequest.OrderItemRequest;
 import com.example.esport.model.orderRequest.OrderRequest;
 import com.example.esport.model.orderResponse.OrderResponse;
+import com.example.esport.presenter.CartPresenter;
 import com.example.esport.presenter.OrderPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutActivity extends AppCompatActivity implements OrderView{
+public class CheckoutActivity extends AppCompatActivity implements OrderView, CartView{
 
     private WebView webviewmap;
+    CartView cartView;
     ListView lvCheckoutList;
     TextView tvCheckoutTotalQuantity, tvCheckoutShippingFee, tvCheckoutTotalPrice, tvCheckoutTotalPriceDown;
     ImageView iconback;
     EditText etShippingAddress, etCity;
-    Button btnBuy;
+    Button btnBuy, buttonAdd;
     CheckoutProductAdapter adapter;
     ArrayList<OrderItem> orderItemArrayList;
     int totalQuantity=0;
@@ -54,7 +57,6 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
         etShippingAddress = (EditText) findViewById(R.id.edShipAddress);
         etCity = (EditText) findViewById(R.id.etCity) ;
         iconback = (ImageView) findViewById(R.id.iconback);
-
         btnBuy = (Button) findViewById(R.id.tvCheckoutBuy) ;
 
         iconback.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +84,8 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
                 OrderRequest order = new OrderRequest(shippingAddress,city,orderItemRequestArrayList);
                 OrderPresenter orderPresenter = new OrderPresenter(CheckoutActivity.this);
                 orderPresenter.createOrder(order);
+                CartPresenter cartPresenter = new CartPresenter(CheckoutActivity.this);
+                cartPresenter.deleteMyCart();
                 Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
@@ -105,11 +109,11 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
     }
 
     public void setEnableButton(){
-        if(totalQuantity==0){
-            btnBuy.setEnabled(false);
-        }else {
-            btnBuy.setEnabled(true);
-        }
+//        if(totalQuantity==0){
+//            btnBuy.setEnabled(false);
+//        }else {
+//            btnBuy.setEnabled(true);
+//        }
     }
 
 
@@ -124,10 +128,13 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
     }
 
     public void setTextData(){
-
+        int totalQuantity=0;
+        long totalPrice=0;
 
         for(OrderItem orderItem : orderItemArrayList){
             totalQuantity += orderItem.getCartQuantity();
+
+            Log.d("quantity", orderItem.getCartQuantity() + "" + orderItem.getPrice());
 
             totalPrice += orderItem.getPrice()*orderItem.getCartQuantity();
 
@@ -137,10 +144,21 @@ public class CheckoutActivity extends AppCompatActivity implements OrderView{
             if(totalQuantity!=0) tvCheckoutShippingFee.setText("$7.5");
             else tvCheckoutShippingFee.setText("$0");
         }
+
+        if(totalQuantity==0){
+            btnBuy.setEnabled(false);
+        }else {
+            btnBuy.setEnabled(true);
+        }
     }
 
     @Override
     public void orderReady(List<OrderResponse> orders) {
+
+    }
+
+    @Override
+    public void CartReady(List<OrderItem> items) {
 
     }
 }

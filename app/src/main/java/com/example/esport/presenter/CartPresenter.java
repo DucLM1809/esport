@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.esport.model.Cart;
 import com.example.esport.model.CartResponse;
 import com.example.esport.model.OrderItem;
+import com.example.esport.model.Product;
 import com.example.esport.service.CartRepository;
 import com.example.esport.service.CartService;
 import com.example.esport.view.CartView;
@@ -74,4 +75,24 @@ public class CartPresenter {
         }
     }
 
+    public boolean deleteMyCart () {
+        try {
+            Call<Cart> call = cartService.deleteMyCart();
+            call.enqueue(new Callback<Cart>() {
+                @Override
+                public void onResponse(Call<Cart> call, Response<Cart> response) {
+                    Log.d("DELETE", "DELETE CART");
+                    getMyCart();
+                }
+
+                @Override
+                public void onFailure(Call<Cart> call, Throwable t) {
+
+                }
+            });
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
